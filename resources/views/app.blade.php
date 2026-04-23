@@ -26,9 +26,14 @@
             }
 
             html.dark {
-                background-color: oklch(0.145 0 0);
+                background-color: #0a0a0d;
             }
         </style>
+
+        <meta name="theme-color" content="#ed1515" />
+        <meta name="color-scheme" content="light dark" />
+
+        {{-- Preload fonts for LCP --}}
 
         <link rel="icon" href="/favicon.ico" sizes="any">
         <link rel="icon" href="/favicon.svg" type="image/svg+xml">
