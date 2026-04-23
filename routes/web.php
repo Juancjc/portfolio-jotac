@@ -43,7 +43,11 @@ Route::middleware(['auth', 'verified'])->prefix('admin')->name('admin.')->group(
     Route::delete('/banner', [BannerController::class, 'destroy'])->name('banner.destroy');
 });
 
-// Redirect legacy /dashboard -> /admin
-Route::middleware(['auth', 'verified'])->get('/dashboard', fn () => redirect()->route('admin.dashboard'));
+// Redirect legacy /dashboard -> /admin.
+// Precisa do nome 'dashboard' para que o Wayfinder gere o export
+// `dashboard` em resources/js/routes (usado por Dashboard.vue, Welcome.vue, AppSidebar.vue).
+Route::middleware(['auth', 'verified'])
+    ->get('/dashboard', fn () => redirect()->route('admin.dashboard'))
+    ->name('dashboard');
 
 require __DIR__.'/settings.php';
