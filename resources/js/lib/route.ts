@@ -7,6 +7,7 @@ type RouteMap = Record<string, string | ((...p: any[]) => string)>;
 
 const routes: RouteMap = {
     'home':                     '/',
+    'public.links':             '/links',
     'login':                    '/login',
     'register':                 '/register',
     'logout':                   '/logout',

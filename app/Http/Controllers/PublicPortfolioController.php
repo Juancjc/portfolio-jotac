@@ -76,6 +76,39 @@ class PublicPortfolioController extends Controller
     }
 
     /**
+     * Página dedicada estilo Linktree — só links, sem as outras seções.
+     */
+    public function links(): Response
+    {
+        $user = User::query()
+            ->with(['profile', 'links' => fn ($q) => $q->active()->ordered()])
+            ->first();
+
+        $profile = $user?->profile;
+
+        $links = $user
+            ? $user->links->map(fn (Link $l) => [
+                'id'          => $l->id,
+                'title'       => $l->title,
+                'description' => $l->description,
+                'icon'        => $l->icon,
+                'type'        => $l->type,
+                'url'         => $l->resolveUrl(),
+                'featured'    => $l->featured,
+            ])
+            : collect();
+
+        return Inertia::render('public/Links', [
+            'profile' => $profile,
+            'links'   => $links,
+            'meta'    => [
+                'title'       => ($profile?->display_name ?? 'Juan Carlos') . ' — Links',
+                'description' => $profile?->subtitle ?? 'Todos os meus links em um só lugar.',
+            ],
+        ]);
+    }
+
+    /**
      * Redireciona e registra click no link.
      */
     public function trackLink(Request $request, Link $link): RedirectResponse

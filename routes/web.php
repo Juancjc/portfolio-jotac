@@ -12,6 +12,7 @@ use Illuminate\Support\Facades\Route;
  | ROTAS PÚBLICAS — Landing Page do Portfólio
  * ================================================================ */
 Route::get('/', [PublicPortfolioController::class, 'home'])->name('home');
+Route::get('/links', [PublicPortfolioController::class, 'links'])->name('public.links');
 Route::get('/l/{link}', [PublicPortfolioController::class, 'trackLink'])->name('links.track');
 
 /* ================================================================
