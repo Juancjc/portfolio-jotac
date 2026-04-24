@@ -1,0 +1,20 @@
+{
+    "$schema": "https://schema.railpack.com",
+    "steps": {
+        "post-build": {
+            "inputs": [{ "step": "build" }],
+            "commands": [
+                "chmod +x ./entrypoint.sh",
+                "php artisan config:cache",
+                "php artisan route:cache",
+                "php artisan view:cache"
+            ]
+        }
+    },
+    "deploy": {
+        "inputs": [{ "step": "post-build" }],
+        "aptPackages": ["bash"],
+        "paths": ["/usr/local/bin", "/usr/bin", "/bin"],
+        "startCommand": "bash -lc \"./entrypoint.sh\""
+    }
+}

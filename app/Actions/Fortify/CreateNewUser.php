@@ -7,6 +7,7 @@ use App\Concerns\ProfileValidationRules;
 use App\Models\User;
 use Illuminate\Support\Facades\Validator;
 use Laravel\Fortify\Contracts\CreatesNewUsers;
+use Illuminate\Validation\ValidationException;
 
 class CreateNewUser implements CreatesNewUsers
 {
@@ -19,6 +20,11 @@ class CreateNewUser implements CreatesNewUsers
      */
     public function create(array $input): User
     {
+        if (User::query()->exists()) {
+            throw ValidationException::withMessages([
+                'register' => 'Cadastro desabilitado. Já existe um usuário.',
+            ]);
+        }
         Validator::make($input, [
             ...$this->profileRules(),
             'password' => $this->passwordRules(),
