@@ -26,13 +26,13 @@ class PublicPortfolioController extends Controller
             ->first();
 
         $profile = $user?->profile ?? new Profile([
-            'display_name' => 'Juan Carlos Justiniano Coelho',
-            'headline'     => 'Full-Stack Developer & Tech Enthusiast',
+            'display_name' => 'Juan CJC',
+            'headline'     => 'Full-Stack Developer & University Professor',
             'subtitle'     => 'Construindo produtos digitais com código limpo, design premium e performance obsessiva.',
             'bio'          => 'Desenvolvedor apaixonado por transformar ideias em experiências digitais de alto nível. Foco em arquiteturas Laravel + Vue, UI/UX moderna e soluções escaláveis.',
-            'github_username' => 'juancarlos',
-            'github_url'      => 'https://github.com/juancarlos',
-            'email_contact'   => 'contato@juancarlos.dev',
+            'github_username' => 'Juancjc',
+            'github_url'      => 'https://github.com/Juancjc',
+            'email_contact'   => 'juancjc@yahoo.com',
             'location'        => 'Brasil',
             'tech_stack'      => ['Laravel', 'Vue 3', 'PrimeVue', 'TypeScript', 'Tailwind CSS', 'PostgreSQL', 'Redis', 'Docker'],
         ]);
@@ -85,7 +85,9 @@ class PublicPortfolioController extends Controller
             ->first();
 
         $profile = $user?->profile;
-
+        $githubStats = $profile?->githubHandle()
+            ? $this->githubStats($profile->githubHandle())
+            : null;
         $links = $user
             ? $user->links->map(fn (Link $l) => [
                 'id'          => $l->id,
@@ -101,6 +103,7 @@ class PublicPortfolioController extends Controller
         return Inertia::render('public/Links', [
             'profile' => $profile,
             'links'   => $links,
+            'stats' => $githubStats,
             'meta'    => [
                 'title'       => ($profile?->display_name ?? 'Juan Carlos') . ' — Links',
                 'description' => $profile?->subtitle ?? 'Todos os meus links em um só lugar.',

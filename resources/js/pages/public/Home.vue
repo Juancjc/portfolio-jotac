@@ -30,7 +30,7 @@ const props = defineProps<{
         <meta name="theme-color" content="#ed1515" />
     </Head>
 
-    <HeroSection      :profile="profile" :banner="banner" />
+    <HeroSection      :profile="profile" :banner="banner" :stats="githubStats" />
     <LinksSection     :links="links" v-if="links?.length" />
     <AboutSection     :profile="profile" />
     <TechStackSection :stack="profile.tech_stack" />
