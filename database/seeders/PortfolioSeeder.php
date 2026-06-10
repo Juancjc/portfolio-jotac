@@ -107,6 +107,15 @@ class PortfolioSeeder extends Seeder
                 'featured' => true,
             ],
             [
+                'title' => 'Sinaliza - Chat Aviso',
+                'description' => 'O Chat Aviso é uma plataforma simples, bonita e responsiva para organizar a comunicação entre administradores e alunos.Crie grupos, converse pelo chat, envie avisos por e-mail, compartilhe links temporários e deixe cada usuário escolher seu próprio emoji de perfil.',
+                'long_description' => 'Projeto público desenvolvido com Vue, focado em exibir informações de status de forma organizada, moderna e responsiva. Pode ser utilizado como base para painéis de monitoramento, páginas de status ou dashboards simples.',
+                'technologies' => ['Vue 3', 'JavaScript', 'CSS', 'Vite', 'PHP', 'LARAVEL', 'PRIME VUE', 'TAILWIND CSS'],
+                'github_url' => 'https://github.com/Juancjc/sinaliza-chat-aviso',
+                'project_url' => 'https://sinaliza.juancjc.com.br/',
+                'featured' => true,
+            ],
+            [
                 'title' => 'Sistema Web Administrativo — Nome Confidencial',
                 'description' => 'Projeto real desenvolvido em ambiente corporativo, com nome não divulgado por questões de confidencialidade.',
                 'long_description' => 'Sistema desenvolvido com Laravel e Vue, envolvendo módulos de CRUD, formulários dinâmicos, listagens, filtros, autenticação, controle de permissões, consumo de APIs e organização de regras de negócio no backend. O nome real do projeto não pode ser informado por questões de confidencialidade.',
